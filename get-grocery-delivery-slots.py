@@ -6,7 +6,7 @@ from twilio.rest import Client
 import configparser
 import logging
 
-logging.basicConfig(filename='asda.log', filemode='w',
+logging.basicConfig(filename='asda.log', filemode='a',
                     format='%(asctime)s - %(message)s', level=logging.INFO)
 
 config = configparser.ConfigParser()

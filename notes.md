@@ -1,5 +1,6 @@
 # Notes
 
+  - tutorial [here][tut]
   - Dev tools of booking page: look for network tab
   - refresh the page and we see the list of requests made by the webpage
   in order to populate itself
@@ -17,3 +18,4 @@
 
 
 [json-f]:http://jsonviewer.stack.hu/
+[tut]:https://towardsdatascience.com/finding-a-grocery-delivery-slot-the-smart-way-f4f0800c4afe
