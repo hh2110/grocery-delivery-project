@@ -4,6 +4,10 @@ from datetime import datetime, timedelta
 import os
 from twilio.rest import Client
 import configparser
+import logging
+
+logging.basicConfig(filename='asda.log', filemode='w',
+                    format='%(asctime)s - %(message)s', level=logging.INFO)
 
 config = configparser.ConfigParser()
 config.read('shops.conf')
@@ -80,3 +84,6 @@ if len(available_list) > 0:
                         from_=os.environ['TWILIO_NUMBER'],
                         to=os.environ['MY_NUMBER']
                     )
+    logging.info('Message sent inlcuding {}'.format(available_list))
+else:
+    logging.info('No available slots')
