@@ -30,6 +30,7 @@ def SetUpEnvironmentVariables(groceryStore):
         "TWILIO_ACT_SID",
         "TWILIO_AUTH_TOKEN",
         "TWILIO_NUMBER",
+        "TWILIO_WHATSAPP_NUMBER",
         "MY_NUMBER",
     ]
 
@@ -88,7 +89,7 @@ def PopulateSlotData(requestString):
     slot_data = {}
 
     # Loop through json response and record slot status for each time slot
-    if requestString.json()['data']:
+    if requestString.json()["data"]:
         for slot_day in requestString.json()["data"]["slot_days"]:
             slot_date = slot_day["slot_date"]
             for slot in slot_day["slots"]:
@@ -110,6 +111,21 @@ def SendTextMessage(messageTxt):
     auth_token = os.environ["TWILIO_AUTH_TOKEN"]
     client = Client(account_sid, auth_token)
 
-    message = client.messages.create(
+    client.messages.create(
         body=messageTxt, from_=os.environ["TWILIO_NUMBER"], to=os.environ["MY_NUMBER"]
+    )
+
+
+def sendWhatsappMessage(messageTxt):
+    """
+    sending whatsapp message with twilio
+    """
+    account_sid = os.environ["TWILIO_ACT_SID"]
+    auth_token = os.environ["TWILIO_AUTH_TOKEN"]
+    client = Client(account_sid, auth_token)
+
+    client.messages.create(
+        body=messageTxt,
+        from_=os.environ["TWILIO_WHATSAPP_NUMBER"],
+        to="whatsapp:" + os.environ["MY_NUMBER"],
     )

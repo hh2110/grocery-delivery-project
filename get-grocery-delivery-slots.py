@@ -1,7 +1,10 @@
 import os
 from HelperFunctions import (
-    SetUpEnvironmentVariables, SetUpJsonFileForRequest, PopulateSlotData,
-    SendTextMessage
+    SetUpEnvironmentVariables,
+    SetUpJsonFileForRequest,
+    PopulateSlotData,
+    SendTextMessage,
+    sendWhatsappMessage,
 )
 import requests
 import logging
@@ -31,8 +34,7 @@ available_list = [
 
 # If any available slots exist, send a text notification
 if len(available_list) > 0:
-    SendTextMessage(available_list[0])
+    sendWhatsappMessage(available_list[0])
     logging.info("Message sent inlcuding {}".format(available_list[0]))
 else:
     logging.info("No available slots")
-
