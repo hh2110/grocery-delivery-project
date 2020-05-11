@@ -40,7 +40,7 @@ def SetUpEnvironmentVariables(groceryStore):
 
     os.environ["URL"] = config[groceryStore]["URL"]
     os.environ["START_DATE"] = datetime.today().date().strftime("%Y-%m-%dT%H:%M:%S")
-    os.environ["END_DATE"] = (datetime.today().date() + timedelta(days=14)).strftime(
+    os.environ["END_DATE"] = (datetime.today().date() + timedelta(days=21)).strftime(
         "%Y-%m-%dT%H:%M:%S"
     )
 
@@ -89,7 +89,7 @@ def PopulateSlotData(requestString):
     slot_data = {}
 
     # Loop through json response and record slot status for each time slot
-    if requestString.json()["data"]:
+    if 'data' in requestString.json().keys():
         for slot_day in requestString.json()["data"]["slot_days"]:
             slot_date = slot_day["slot_date"]
             for slot in slot_day["slots"]:
